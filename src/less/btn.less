@@ -1,0 +1,48 @@
+/**
+ * [btn.less] 按钮风格
+ * .btn为公共类, .btn-X必须建立在其基础上
+ * @btn-padding  {[标准按钮padding-top/bottom值,小按钮等比缩放]}
+ */
+@btn-padding: 6px;
+
+.btn {
+  display: inline-block;
+  padding: @btn-padding @btn-padding * 2;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: @base-radius;
+}
+
+.btn-default {
+  background-color: @color-default;
+  border-color: darken(@color-default, 8%);
+  &:hover{
+    background-color: darken(@color-default, 8%);
+  }
+}
+.btn-danger {
+  background-color: @color-danger;
+  border-color: darken(@color-danger, 8%);
+  &:hover{
+    background-color: darken(@color-danger, 8%);
+  }
+}
+.btn-success {
+  background-color: @color-success;
+  border-color: darken(@color-success, 8%);
+  &:hover{
+    background-color: darken(@color-success, 8%);
+  }
+}
+/* transparent */
+.btn-transparent {
+  background-color: transparent;
+  border-color: #fff;
+}
+/* small-button */
+.btn-xs {
+  padding: @btn-padding / 2 @btn-padding;
+}

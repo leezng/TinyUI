@@ -1,0 +1,127 @@
+/**
+ * [loading.less] 加载动画UI
+ */
+@anime-container: 100px;
+
+.loading {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: contrast(@base-background);
+  background-color: @base-background;
+  z-index: @base-z-index * 8;
+}
+.anime {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: @anime-container;
+  height: @anime-container; 
+}
+
+/*---------- .anime-rotate-line 旋转的线条 ----------*/
+@rl-nums: 12; /* 线条个数 */
+@rl-width: 2px; /* 线条宽 */
+@rl-height: @anime-container / 3; /* 线条高 */
+@rl-time: 1.2s;
+
+.anime-rotate-line {
+  i {
+    display: block;
+    position: absolute;
+    margin-bottom: @base-margin;
+    top: 0;
+    height: @rl-height;
+    width: @rl-width;
+    opacity: 0;
+    background-color: contrast(@base-background);  
+    transform-origin: center (@anime-container / 2);
+    animation: anime-rotate-line @rl-time infinite;
+  }
+}
+
+.rotate-line(@i:1) when (@i <= @rl-nums) {
+  .anime-rotate-line i:nth-child(@{i}) {
+    left: @anime-container / 2 - @rl-width / 2;  
+    transform: rotate~"("360deg / @rl-nums * (@i - 1)~")";
+    animation-delay: @rl-time / @rl-nums * (@rl-nums - 1);
+  }
+  .rotate-line(@i + 1);
+}
+.rotate-line();
+
+@keyframes anime-rotate-line {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/*---------- .anime-scale-cube 缩放的方块 ----------*/
+@sc-unit: 3; /* 每边的方块个数*/
+
+.anime-scale-cube {
+  i {
+    float: left;
+    width: 100% / @sc-unit;
+    height: 100% / @sc-unit;
+    background-color: contrast(@base-background);  
+    animation: anime-cube 1.5s infinite;
+  }
+}
+
+.scale-cube(@sc-unit, @i:1) when (@i <= @sc-unit * @sc-unit) {
+  .anime-scale-cube i:nth-child(@{i}) {
+    animation-delay: (@i - 1) / 10s;
+  }
+  .scale-cube(@sc-unit, (@i + 1));
+}
+.scale-cube(@sc-unit);
+
+@keyframes anime-scale-cube {
+  0%, 70%, 100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(0);
+  }
+}
+
+/*---------- .anime-rippling 浮动的涟漪 ----------*/
+.anime-rippling i {
+  display: block;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  background-color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.anime-rippling i:nth-child(1) {
+  animation: rippling 1s linear 0s infinite;
+}
+.anime-rippling i:nth-child(2) {
+  animation: rippling 1s linear 0.2s infinite;
+}
+.anime-rippling i:nth-child(3) {
+  animation: rippling 1s linear 0.4s infinite;
+}
+
+@keyframes rippling {
+  0%{
+    transform:scale(0);
+    opacity: 1;
+  }
+  100%{
+    transform:scale(1);
+    opacity: 0;
+  }
+}

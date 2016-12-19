@@ -1,0 +1,71 @@
+/**
+ * [grid.less] 栅格系统
+ * @grid     {[每一行的列数]}
+ * @lg-width {[大屏]}
+ * @md-width {[中屏]}
+ * @sm-width {[小屏,分辨率小于此值默认为移动端]}
+ */
+@grid: 12;
+@lg-width: 1200px;
+@md-width: 992px;
+@sm-width: 768px;
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 @base-padding;
+}
+.row {
+  .clearfix;
+  margin: 0 -@base-margin;
+}
+
+/* 最小分辨率 */
+.xs(@grid, @i:1) when (@i <= @grid) {
+  .col-xs-@{i} {
+    position: relative;
+    padding: 0 @base-padding;
+    width: (@i / @grid * 100%);
+    float: left;
+  }
+  .xs(@grid, (@i + 1));
+}
+.xs(@grid);
+
+/* 分辨率 >= @sm-width */
+@media (min-width: @sm-width) {
+  .sm(@grid, @i:1) when (@i <= @grid) {
+    .col-sm-@{i} {
+      position: relative;
+      padding: 0 @base-padding;
+      width: (@i / @grid * 100%);
+      float: left;
+    }
+    .sm(@grid, (@i + 1));
+  }
+  .sm(@grid);
+}
+
+/* 分辨率 >= @md-width */
+@media (min-width: @md-width) {
+  .container {
+    width: (@md-width - 30);
+  }
+}
+
+/* 分辨率 >= @lg-width */
+@media (min-width: @lg-width) {
+  .container {
+    width: (@lg-width - 30);
+  }
+  .lg(@grid, @i:1) when (@i <= @grid) {
+    .col-lg-@{i} {
+      position: relative;
+      padding: 0 @base-padding;
+      width: (@i / @grid * 100%);
+      float: left;
+    }
+    .lg(@grid, (@i + 1));
+  }
+  .lg(@grid);
+}
