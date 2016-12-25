@@ -1,0 +1,129 @@
+/**
+ * [nav.less] 导航风格UI
+ * @nav-color     {[默认导航栏菜单字体颜色]}
+ * @nav-btnLength {[移动端显示该项,触发块边长,正方形]}
+ */
+@nav-btnLength: 40px;
+@nav-color: #fff;
+
+nav {
+  position: relative;
+  padding: 0 @base-padding;
+  .logo {
+    display: inline-block;
+  }
+}
+.nav {
+  display: inline-block;
+  a {
+    display: inline-block;
+    color: @nav-color;
+    position: relative;
+    padding: 4px 0;
+  }
+  ul > li {
+    position: relative;
+    margin: 0 @base-margin;  
+  }
+}
+.nav-btn {
+  display: none;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: @base-padding;
+  z-index: 200;
+  width: @nav-btnLength;
+  height: @nav-btnLength;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: @base-radius;
+}
+@media (max-width: @sm-width) {
+  .nav {
+    position: fixed !important;
+    padding-top: @nav-btnLength + @base-padding * 2;
+    left: 0;
+    width: 0;
+    height: 100%;
+    z-index: 100;    
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: all linear 0.3s;
+    ul > li {
+      display: block;
+      line-height: 2;
+    }
+  }
+  .nav-btn {
+    display: block;
+  }
+}
+
+/* dropdown */
+@media (min-width: @sm-width) {
+  .dropdown {
+    &:hover .dropdown-menu {
+      width: 100%;
+    }
+    ul li {
+      margin: 0;
+    }
+  }
+  .dropdown-menu {
+    position: absolute;
+    left: 0;
+    width: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: all linear 0.2s;
+  }  
+}
+
+/* nav position */
+.nav-right {
+  position: absolute;
+  right: @base-padding;
+  bottom: 0;
+}
+.nav-center {
+  display: block;
+  text-align: center;
+}
+
+/* nav animation */
+@media (min-width: @sm-width) {
+  .nav-default a:hover {
+    border-bottom: 1px solid @nav-color;
+  }
+  .nav-decoration a {
+    transform: translateZ(0);
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      background-color: @nav-color;
+      height: 1px;
+      transition: all ease-out 0.3s;
+    }
+    &:hover:before {
+      left: 0;
+      right: 0;
+    }
+  }
+  .nav-shake a:hover {
+    animation: shake .3s linear;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: rotate(15deg);
+  }
+  70% {
+    transform: rotate(-15deg);
+  }
+}

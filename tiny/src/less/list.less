@@ -1,0 +1,15 @@
+/**
+ * [list.less] 列表风格UI
+ * .list-unstyled 无样式列表, .list-inline 行内列表
+ */
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.list-inline {
+  .list-unstyled;
+  & > li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

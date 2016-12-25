@@ -1,0 +1,107 @@
+/**
+ * [form.less] 表单UI
+ * @check-radio {[单选框/复选框的边长度]}
+ */
+@check-radio: 20px;
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+textarea {
+  overflow: auto;
+  &.form-control {
+    height: auto;
+    max-width: 100%;
+  }
+}
+label {
+  display: inline-block;
+  margin-bottom: 4px;
+  &.checkbox,
+  &.radio,
+  &.checkbox-inline,
+  &.radio-inline {
+    position: relative;
+    padding-left: @check-radio + 10px;
+    line-height: 1.5;
+  }
+  &.checkbox,
+  &.radio {
+    display: block;
+  }
+}
+input[type="checkbox"], input[type="radio"] {
+  display: none;
+  + span {
+    cursor: pointer;
+    &:before {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: @check-radio;
+      height: @check-radio;
+      content: "";
+      border: 1px solid #ccc;       
+    }
+  }
+  &:checked + span:before {
+    content: "\2714"; 
+    line-height: @check-radio;
+    font-weight: normal;
+    text-align: center;
+  }
+}
+input[type="radio"] + span:before {
+  border-radius: 50%;
+}
+.form-group {
+  margin-bottom: @base-margin;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 4px 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: @base-radius;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  transition: border-color ease-in-out .15s, 
+              box-shadow ease-in-out .15s;
+  &[disabled], &[readonly] {
+    background-color: #eee;
+  }
+  &:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  }
+}
+.input-group {
+  display: table;
+  vertical-align: middle;
+  width: 100%;
+  .form-control {
+    display: table-cell;
+    float: left;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .input-group-addon {
+    display: table-cell;
+    padding: 4px 10px;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-radius: @base-radius 0 0;
+    color: #555;
+  }
+}

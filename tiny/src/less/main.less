@@ -1,0 +1,64 @@
+/**
+ * [main.less] 主要参数设置
+ * @base-padding     {[默认基础padding]}
+ * @base-margin      {[默认基础margin]}
+ * @base-radius      {[默认基础border-radius]}
+ * @base-z-index     {[默认基础层级10,最高100,分为10级]}
+ * @base-background  {[默认基础背景色调]}
+ */
+@base-padding: 15px;
+@base-margin: 15px;
+@base-radius: 5px;
+@base-z-index: 10;
+@base-background: #2eafb5;
+
+/**
+ * @color-default  {[默认状态颜色]}
+ * @color-danger   {[警告状态颜色]}
+ * @color-success  {[成功状态颜色]}
+ */
+@color-default: #31b0d5; /* blue  */
+@color-danger: #d9534f;  /* red   */
+@color-success: #8fbc8f; /* green */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+    font-family: "Microsoft Yahei", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    background-color: #fff;
+}
+a {
+  text-decoration: none;
+  transition: all linear .3s;
+}
+header, main, footer, section, article {
+  padding: @base-padding 0;
+}
+.clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+[hidden] {
+  display: none;
+}

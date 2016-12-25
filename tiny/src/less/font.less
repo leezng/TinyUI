@@ -1,0 +1,24 @@
+/**
+ * [font.less] 字体UI
+ * @font-size-h         {[一级标题h1字体大小]}
+ * @font-size-p         {[段落p字体大小]}
+ * @font-margin-bottom  {[字体默认margin-bottom值]}
+ */
+@font-size-h: 32px;
+@font-size-p: 14px;
+@font-margin-bottom: 10px;
+
+.font-header(@h, @i:1) when (@i <= @h) {
+  h@{i} {
+    font-size: @font-size-h - (@i - 1) * 4;
+    font-weight: 500;
+    margin-bottom: @font-margin-bottom;
+  }
+  .font-header(@h, @i + 1);
+}
+.font-header(6);
+
+p {
+  font-size: @font-size-p;
+  margin-bottom: @font-margin-bottom;
+}
